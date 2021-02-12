@@ -1,9 +1,9 @@
 # CS319-Group1J
 
-Participants: 
+Participants:
 
-Alperen Can
-Cihan Can Kılıç
-Doğukan Ertunga Kurnaz
-Göktuğ Çağıran
-Mustafa Anıl Taşdan
+Alperen Can 
+Cihan Can Kılıç 
+Doğukan Ertunga Kurnaz 
+Göktuğ Çağıran 
+Mustafa Anıl Taşdan 
