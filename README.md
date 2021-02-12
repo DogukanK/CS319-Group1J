@@ -1,7 +1,7 @@
 # CS319-Group1J
 
 Project Name: Classroom Helper<br />
-Project Description: This is a web-based application to help both students and teachers to communicate in an easier and convenient way.
+Project Description: This is a web-based application to help both students and teachers to communicate in an easier and convenient way. They can plan homeworks, projects and exams better.
 
 Participants:
 
