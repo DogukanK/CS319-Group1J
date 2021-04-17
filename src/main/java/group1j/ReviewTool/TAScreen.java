@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Group1JProject;
+package group1j.ReviewTool;
 
 /**
  *
  * @author anilt
  */
-public class InstructorScreen extends javax.swing.JFrame {
+public class TAScreen extends javax.swing.JFrame {
 
     /**
-     * Creates new form InstructorScreen
+     * Creates new form TAScreen
      */
-    public InstructorScreen() {
+    public TAScreen() {
         initComponents();
     }
 
