@@ -8,8 +8,10 @@ package group1j.ReviewTool;
 import java.util.ArrayList;
 
 /**
- *
  * @author anilt
+ * This is the UserInterface class, which is the main class
+ * for the top layer. Handles data connection between individual
+ * UI classes and the LogicManagement class.
  */
 public class UserInterface {
     
@@ -20,6 +22,8 @@ public class UserInterface {
             }
         });
     }
+    
+    // NEEDS IMPLEMENTATION
     public static boolean login(String email,char[] password){
         if(LogicManagement.signIn(email,password) == true){
             if(LogicManagement.getCurrentUser().getClass() == Instructor.class){
@@ -39,6 +43,7 @@ public class UserInterface {
         
     }
     
+    
     public static void createGroup(ArrayList<Integer> selectedIDs,String groupName){
         LogicManagement.createGroup(selectedIDs,groupName);
     }
@@ -52,7 +57,7 @@ public class UserInterface {
     }
     
     public static void setSelectedGroup(String groupName){
-        LogicManagement.setSelectedGroup(groupName );
+        LogicManagement.setSelectedGroup(groupName);
     }
     
     public static ArrayList<User> getFreeUserList(){

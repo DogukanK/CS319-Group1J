@@ -1,8 +1,12 @@
 package group1j.ReviewTool;
 import java.util.HashMap;
 /**
- *
  * @author anilt
+ * This is the Assignment class, which holds
+ * assignment name
+ * filePath of the artifact
+ * reviews made by various users
+ * assignment description
  */
 public class Assignment {
     private String name;
