@@ -67,4 +67,11 @@ public class UserInterface {
     public static ArrayList<Group> getGlobalGroupList(){
         return LogicManagement.getGlobalGroupList();
     }
+    
+    
+    public static void addMembers(ArrayList<Integer> selectedIDs,String groupName){
+        LogicManagement.addMembers(selectedIDs,groupName);
+    }
+    
+    public static void removeMember(int id,String groupName){}
 }
