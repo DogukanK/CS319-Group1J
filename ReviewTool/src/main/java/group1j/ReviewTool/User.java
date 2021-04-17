@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package group1j.ReviewTool;
 
 /**
- *
  * @author anilt
+ * This is an abstract class
+ * providing a template for Instructor,Student and
+ * TA classes.
  */
 public abstract class User {
     protected int id;
@@ -38,12 +36,11 @@ public abstract class User {
         this.name = name;
     }
     
-    // Gets targetAssignment from the UI
-    public void addAssignmentReview(String review,Assignment targetAssignment){
-        targetAssignment.getAReviews().put(this,review);
+    // NEEDS IMPLEMENTATION
+    public void addAssignmentReview(String review,String reviewer,String targetGroup){
     }
     
-    public void removeAssignmentReview(String review,Assignment targetAssignment){
-        targetAssignment.getAReviews().remove(this,review);
+    // NEEDS IMPLEMENTATION
+    public void removeAssignmentReview(String review,String reviewer,String targetGroup,String assignmentName){
     }
 }

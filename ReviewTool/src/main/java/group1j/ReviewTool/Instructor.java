@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group1j.ReviewTool;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- *
  * @author anilt
+ * This is the instructor class, which holds implementation for:
+ * Assignment creation/deletion
+ * Group creation
+ * Member addition/deletion
  */
 public class Instructor extends User{
     
@@ -19,6 +17,7 @@ public class Instructor extends User{
         this.email = email;
         this.name = name;
     }
+    
     // Add new assignment to all groups' assignment list
     public void createAssignment(String name,String desc){        
         for(Group traverse : LogicManagement.getGlobalGroupList()){
@@ -27,12 +26,11 @@ public class Instructor extends User{
         }
     }
     
-    // Gets which assignment to remove from the UI
-    public void removeAssignment(String aName){
-        
-    }
-    
-    // Create new group
+    /*
+    ** Creates new group and adds it to globalGroupList in LogicManagement
+    ** selectedIDs: IDs of members selected in the UI
+    ** groupName: Entered by the user
+    */
     public void createGroup(ArrayList<Integer> selectedIDs,String groupName){
         Group newGroup = new Group(groupName);
         ArrayList<User> userList = LogicManagement.getFreeUserList();
@@ -55,13 +53,17 @@ public class Instructor extends User{
         LogicManagement.getGlobalGroupList().add(newGroup);
     }
     
-    // Gets targetUser and targetGroup from UI, which are provided from the mainLogicClass
-    public void addMember(User targetUser,Group targetGroup){
-        targetGroup.getMembers().add(targetUser);
-    }
-    // Gets targetUser and targetGroup from UI, which are provided from the mainLogicClass
-    public void removeMember(User targetUser,Group targetGroup){
-        targetGroup.getMembers().remove(targetUser);
+    // NEEDS IMPLEMENTATION
+    public void addMembers(ArrayList<Integer> selectedIDs,String groupName){
+        
     }
     
+    // NEEDS IMPLEMENTATION
+    public void removeMember(int id, String groupName){
+    }
+    
+     // NEEDS IMPLEMENTATION
+    public void removeAssignment(String aName){
+        
+    }
 }

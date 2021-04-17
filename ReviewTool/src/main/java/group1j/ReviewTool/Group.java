@@ -2,8 +2,12 @@ package group1j.ReviewTool;
 import java.util.ArrayList;
 import java.util.HashMap;
 /**
- *
  * @author anilt
+ * This is the Group class, which holds:
+ * group name
+ * group members
+ * group assignments
+ * user (peer) reviews
  */
 public class Group {
     

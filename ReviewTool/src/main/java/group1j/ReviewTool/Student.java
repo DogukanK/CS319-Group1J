@@ -25,14 +25,11 @@ public class Student extends User{
         
     }
     
-    // Get review target and information from the UI
-    public void addPeerReview(User targetUser,Group targetGroup,int point,String review){
-        UReview newReview = new UReview(point,review,this);
-        targetGroup.getUReviews().put(targetUser,newReview);
+    // NEEDS IMPLEMENTATION
+    public void addPeerReview(String uName,String gName,String reviewer,int point,String review){
     }
     
-    // Get review target and information from the UI
-    public void removePeerReview(User targetUser,Group targetGroup,UReview targetReview){
-        targetGroup.getUReviews().remove(targetUser,targetReview);
+    // NEEDS IMPLEMENTATION
+    public void removePeerReview(String uName,String gName,String reviewer){
     }
 }

@@ -1,8 +1,11 @@
 package group1j.ReviewTool;
 import java.util.ArrayList;
 /**
- *
  * @author anilt
+ * This is the LogicManagement class, which is the main class
+ * for the middle layer. Essentially a connector class,
+ * which receives data from and sends data to
+ * the UI and DB main classes.
  */
 public class LogicManagement {
     private static ArrayList<Group> globalGroupList = new ArrayList<Group>();
@@ -12,13 +15,12 @@ public class LogicManagement {
     private static Group selectedGroup = new Group("");
     
     
-    public static boolean signUp(int id,String email,String name,String password){
-        
-        
+    // NEEDS IMPLEMENTATION
+    public static boolean signUp(String email,String name,String password){
         return false;
     }
     
-    // TODO: If query succeeds, instantiate grouplists, userlists and currentuser before this function terminates!
+    // NEEDS IMPLEMENTATION
     public static boolean signIn(String email,char[] password){
         
         currentUser = new Instructor(1,"e-mail","Instructor-Name");
@@ -44,6 +46,9 @@ public class LogicManagement {
         freeUserList.add(new Student(7,"e1","Name7"));
         return true;
     }
+    
+    // NEEDS IMPLEMENTATION
+    public static void update(){}
 
     public static ArrayList<Group> getGlobalGroupList() {
         return globalGroupList;
@@ -65,6 +70,11 @@ public class LogicManagement {
         ((Instructor) currentUser).createGroup(selectedIDs,groupName);
     }
     
+    /*
+    ** Sets the selectedGroup variable
+    ** based on the group an instructor selects
+    ** in the UI.
+    */
     public static void setSelectedGroup(String groupName){
         for(Group g : globalGroupList){
             if(g.getName().equals(groupName)){
@@ -73,4 +83,6 @@ public class LogicManagement {
             }
         }
     }
+    
+   
 }
