@@ -49,6 +49,8 @@ public class LogicManagement {
     
     // NEEDS IMPLEMENTATION
     public static void update(){}
+    
+    public static void addMembers(ArrayList<Integer> selectedIDs,String groupName){}
 
     public static ArrayList<Group> getGlobalGroupList() {
         return globalGroupList;

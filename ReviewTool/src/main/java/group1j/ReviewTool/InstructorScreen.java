@@ -36,6 +36,7 @@ public class InstructorScreen extends javax.swing.JFrame {
         createGroupDialog = new javax.swing.JDialog();
         cDialogPanel = new javax.swing.JPanel();
         cDialogTopInternalPanel = new javax.swing.JPanel();
+        concealingPanel = new javax.swing.JPanel();
         cDialogText2 = new javax.swing.JLabel();
         cDialogTextField = new javax.swing.JTextField();
         cDialogBottomInternalPanel = new javax.swing.JPanel();
@@ -93,6 +94,19 @@ public class InstructorScreen extends javax.swing.JFrame {
 
         cDialogTopInternalPanel.setBackground(new java.awt.Color(23, 35, 51));
 
+        concealingPanel.setBackground(new java.awt.Color(23, 35, 51));
+
+        javax.swing.GroupLayout concealingPanelLayout = new javax.swing.GroupLayout(concealingPanel);
+        concealingPanel.setLayout(concealingPanelLayout);
+        concealingPanelLayout.setHorizontalGroup(
+            concealingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 398, Short.MAX_VALUE)
+        );
+        concealingPanelLayout.setVerticalGroup(
+            concealingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 88, Short.MAX_VALUE)
+        );
+
         cDialogText2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cDialogText2.setForeground(new java.awt.Color(255, 255, 255));
         cDialogText2.setText("Group Name:");
@@ -107,11 +121,15 @@ public class InstructorScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(cDialogTopInternalPanelLayout.createSequentialGroup()
+                .addComponent(concealingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         cDialogTopInternalPanelLayout.setVerticalGroup(
             cDialogTopInternalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cDialogTopInternalPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(concealingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(cDialogTopInternalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cDialogText2, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                     .addComponent(cDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -415,7 +433,7 @@ public class InstructorScreen extends javax.swing.JFrame {
         addMemberButton.setBackground(new java.awt.Color(255, 255, 255));
         addMemberButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         addMemberButton.setForeground(new java.awt.Color(0, 0, 0));
-        addMemberButton.setText("Add New Member");
+        addMemberButton.setText("Add New Members");
         addMemberButton.setToolTipText("");
         addMemberButton.setBorder(null);
         addMemberButton.setBorderPainted(false);
@@ -451,6 +469,8 @@ public class InstructorScreen extends javax.swing.JFrame {
             }
             createAssignmentDialog.setVisible(false);
             createGroupDialog.setVisible(true);
+            concealingPanel.setVisible(false);
+            cDialogButton.setText("Create Group");
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel ) cDialogTable.getModel();
             model.setRowCount(0);
             for(User u: userList){
@@ -491,10 +511,6 @@ public class InstructorScreen extends javax.swing.JFrame {
     */
     private void cDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cDialogButtonActionPerformed
         try{
-            String groupName = cDialogTextField.getText();
-            if(groupName.equals("")){
-                throw new Exception("0");
-            }
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel ) cDialogTable.getModel();
             ArrayList<Integer> selectedIDs = new ArrayList<Integer>();
             for(int i = 0; i < model.getRowCount();i++){
@@ -506,9 +522,19 @@ public class InstructorScreen extends javax.swing.JFrame {
             if(selectedIDs.size() == 0){
                 throw new Exception("1");
             }
-            UserInterface.createGroup(selectedIDs,groupName);
+            if(groupsPanel.isVisible() == true){
+                String groupName = cDialogTextField.getText();
+                if(groupName.equals("")){
+                    throw new Exception("0");
+                }
+                UserInterface.createGroup(selectedIDs,groupName); 
+                addGroupToUI(UserInterface.getGlobalGroupList().get(UserInterface.getGlobalGroupList().size()-1));
+            }
+            else if(selectedGroupPanel.isVisible() == true){
+                UserInterface.addMembers(selectedIDs,LogicManagement.getSelectedGroup().getName());
+                showGroupMembers();
+            }
             createGroupDialog.setVisible(false);
-            addGroupToUI(UserInterface.getGlobalGroupList().get(UserInterface.getGlobalGroupList().size()-1));
             this.revalidate();
             cDialogTextField.setText("");
         }
@@ -561,9 +587,30 @@ public class InstructorScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_aDialogButtonActionPerformed
 
-    // NEEDS IMPLEMENTATION
+    /*
+    ** Exact same as "Create New Group" button,
+    ** but changes the text.
+    */
     private void addMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberButtonActionPerformed
-        // TODO add your handling code here:
+        try{
+            ArrayList<User> userList = UserInterface.getFreeUserList();
+            if(userList.size() == 0){
+                throw new Exception("0");
+            }
+            createAssignmentDialog.setVisible(false);
+            createGroupDialog.setVisible(true);
+            concealingPanel.setVisible(true);
+            cDialogButton.setText("Add member(s)");
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel ) cDialogTable.getModel();
+            model.setRowCount(0);
+            for(User u: userList){
+                model.addRow(new Object[]{u.getName(),u.getId(),false});
+            }
+        }
+        catch(Exception e){
+            errorBox.setVisible(true);
+            errorText.setText("There are no unassigned students!");
+        }
     }//GEN-LAST:event_addMemberButtonActionPerformed
 
     // NEEDS IMPLEMENTATION
@@ -591,9 +638,11 @@ public class InstructorScreen extends javax.swing.JFrame {
         
     }
     
-    // NEEDS IMPLEMENTATION
+    // Removes the selected user from group and refreshes UI
     private void removeMemberButtonActionPerformed(java.awt.event.ActionEvent evt){
-        
+        int id = Integer.parseInt(((JButton)evt.getSource()).getName());
+        UserInterface.removeMember(id, LogicManagement.getSelectedGroup().getName());
+        showGroupMembers();
     }
     
     // NEEDS IMPLEMENTATION
@@ -701,7 +750,7 @@ public class InstructorScreen extends javax.swing.JFrame {
     ** Gets called as many times as there are existing members
     ** Also gets called when a member is added or removed
     */
-    private void addGroupMemberToUI(User u){
+    private void addMemberToUI(User u){
         JPanel newMemberPanel = new javax.swing.JPanel();
         JLabel memberName = new javax.swing.JLabel();
         JButton removeMemberButton = new javax.swing.JButton();
@@ -715,6 +764,7 @@ public class InstructorScreen extends javax.swing.JFrame {
         newMemberPanel.setMaximumSize(new java.awt.Dimension(1132, 100));
         newMemberPanel.setMinimumSize(new java.awt.Dimension(1132, 100));
         removeMemberButton.setBorder(null);
+        removeMemberButton.setName(""+ u.getId());
         viewReviewsButton.setBorder(null);
         
         removeMemberButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -801,7 +851,7 @@ public class InstructorScreen extends javax.swing.JFrame {
         selectedGroupInternalPanel.removeAll();
         Group currentGroup = LogicManagement.getSelectedGroup();
         for(User u:currentGroup.getMembers()){
-            addGroupMemberToUI(u);
+            addMemberToUI(u);
         }
         selectedGroupScrollPane.getVerticalScrollBar().setUnitIncrement(16);
     }
@@ -853,6 +903,7 @@ public class InstructorScreen extends javax.swing.JFrame {
     private javax.swing.JLabel cDialogText2;
     private javax.swing.JTextField cDialogTextField;
     private javax.swing.JPanel cDialogTopInternalPanel;
+    private javax.swing.JPanel concealingPanel;
     private javax.swing.JDialog createAssignmentDialog;
     private javax.swing.JDialog createGroupDialog;
     private javax.swing.JDialog errorBox;
