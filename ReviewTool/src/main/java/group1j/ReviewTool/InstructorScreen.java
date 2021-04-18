@@ -1,6 +1,7 @@
 
 package group1j.ReviewTool;
 
+import group1j.ReviewTool.factories.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -619,13 +620,13 @@ public class InstructorScreen extends javax.swing.JFrame {
         errorBox.setVisible(false);
     }//GEN-LAST:event_errorButtonActionPerformed
 
+    
     /*
     ** Event handling code for "View Group" button (eye symbol)
     ** Shows an empty panel for displaying the selected group.
     ** The panel is filled by showGroupMembers() function
     */
-    private void groupViewButtonActionPerformed(java.awt.event.ActionEvent evt){
-        String groupName = ((JButton) evt.getSource()).getName();
+    public void groupViewButtonActionPerformed(String groupName){
         UserInterface.setSelectedGroup(groupName);
         groupsPanel.setVisible(false);
         assignmentsPanel.setVisible(false);
@@ -634,7 +635,7 @@ public class InstructorScreen extends javax.swing.JFrame {
     }
     
     // NEEDS IMPLEMENTATION
-    private void assignmentViewButtonActionPerformed(java.awt.event.ActionEvent evt){
+    private void assignmentViewButtonActionPerformed(String aName){
         
     }
     
@@ -654,168 +655,68 @@ public class InstructorScreen extends javax.swing.JFrame {
     ** Adds a single group to the "Groups" panel display
     ** Gets called as many times as there are existing groups
     ** Also gets called when a new group is created
+    ** The group panel is created by PanelFactory
     */
     private void addGroupToUI(Group gr){
-        javax.swing.JPanel newButtonPanel = new javax.swing.JPanel();
-            javax.swing.JLabel newgroupLabel = new javax.swing.JLabel();
-            javax.swing.JButton viewButton = new javax.swing.JButton();
-            viewButton.setName(gr.getName());
-            
-            newgroupLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-            newgroupLabel.setForeground(new java.awt.Color(0, 0, 0));
-            newgroupLabel.setText(gr.getName());
+        UIPanel newGroupPanel = PanelFactory.createPanel("group");
         
-            viewButton.setBackground(new java.awt.Color(255, 255, 255));
-            viewButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\img\\view.png"));
-            viewButton.setBorder(null);
-            viewButton.addActionListener(new java.awt.event.ActionListener() {
+        newGroupPanel.setLabel(gr.getName());
+        
+        newGroupPanel.getViewButton().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                groupViewButtonActionPerformed(evt);
+                groupViewButtonActionPerformed(gr.getName());
             }
-            });
+        });
         
-            newButtonPanel.setBackground(new java.awt.Color(255, 255, 255));
-            newButtonPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            javax.swing.GroupLayout newButtonPanelLayout = new javax.swing.GroupLayout(newButtonPanel);
-            newButtonPanel.setLayout(newButtonPanelLayout);
-            newButtonPanelLayout.setHorizontalGroup(newButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newButtonPanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(newgroupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 642, Short.MAX_VALUE)
-                .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-            );
-            newButtonPanelLayout.setVerticalGroup(newButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newButtonPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(newgroupLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(viewButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            );
-            
-            groupsInternalPanel.add(newButtonPanel);
-            groupsInternalPanel.add(javax.swing.Box.createVerticalGlue());
+        groupsInternalPanel.add(newGroupPanel);
+        groupsInternalPanel.add(javax.swing.Box.createVerticalGlue());
     }
     
     /*
     ** Adds a single assignment to the "Assigments" panel display
     ** Gets called as many times as there are existing assignments
     ** Also gets called when a new assignment is created
+    ** The assignment panel is created by PanelFactory
     */
     private void addAssignmentToUI(Assignment a){
-         javax.swing.JPanel newButtonPanel = new javax.swing.JPanel();
-            javax.swing.JLabel newgroupLabel = new javax.swing.JLabel();
-            javax.swing.JButton viewButton = new javax.swing.JButton();
-            
-            newgroupLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-            newgroupLabel.setForeground(new java.awt.Color(0, 0, 0));
-            newgroupLabel.setText(a.getName());
         
-            viewButton.setBackground(new java.awt.Color(255, 255, 255));
-            viewButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\img/view.png"));
-            viewButton.setBorder(null);
-            viewButton.addActionListener(new java.awt.event.ActionListener() {
+        UIPanel newAssignmentPanel = PanelFactory.createPanel("assignment");
+        
+        newAssignmentPanel.setLabel(a.getName());
+            
+        newAssignmentPanel.getViewButton().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignmentViewButtonActionPerformed(evt);
+                assignmentViewButtonActionPerformed(a.getName());
             }
-            });
-        
-            newButtonPanel.setBackground(new java.awt.Color(255, 255, 255));
-            newButtonPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            javax.swing.GroupLayout newButtonPanelLayout = new javax.swing.GroupLayout(newButtonPanel);
-            newButtonPanel.setLayout(newButtonPanelLayout);
-            newButtonPanelLayout.setHorizontalGroup(newButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newButtonPanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(newgroupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 642, Short.MAX_VALUE)
-                .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-            );
-            newButtonPanelLayout.setVerticalGroup(newButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newButtonPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(newgroupLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(viewButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            );
+        });
             
-            assignmentsInternalPanel.add(newButtonPanel);
-            assignmentsInternalPanel.add(javax.swing.Box.createVerticalGlue());
+        assignmentsInternalPanel.add(newAssignmentPanel);
+        assignmentsInternalPanel.add(javax.swing.Box.createVerticalGlue());
     }
     
     /*
     ** Adds a single group member to the "View Group" panel display
     ** Gets called as many times as there are existing members
     ** Also gets called when a member is added or removed
+    ** The member panel is created by PanelFactory
     */
     private void addMemberToUI(User u){
-        JPanel newMemberPanel = new javax.swing.JPanel();
-        JLabel memberName = new javax.swing.JLabel();
-        JButton removeMemberButton = new javax.swing.JButton();
-        JButton viewReviewsButton = new javax.swing.JButton();
-
-        memberName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        memberName.setForeground(new java.awt.Color(0, 0, 0));
-        memberName.setText("Member Name: " + u.getName());
         
-        newMemberPanel.setBackground(new java.awt.Color(255, 255, 255));
-        newMemberPanel.setMaximumSize(new java.awt.Dimension(1132, 100));
-        newMemberPanel.setMinimumSize(new java.awt.Dimension(1132, 100));
-        removeMemberButton.setBorder(null);
-        removeMemberButton.setName(""+ u.getId());
-        viewReviewsButton.setBorder(null);
+        UIPanel newMemberPanel = PanelFactory.createPanel("member");
         
-        removeMemberButton.setBackground(new java.awt.Color(255, 255, 255));
-        viewReviewsButton.setBackground(new java.awt.Color(255, 255, 255));
+        newMemberPanel.setLabel(u.getId() + "," + u.getName());
         
-        newMemberPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        
-        addMemberButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addMemberButtonActionPerformed(evt);
-            }
-        });
-        removeMemberButton.addActionListener(new java.awt.event.ActionListener() {
+        newMemberPanel.getRemoveButton().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeMemberButtonActionPerformed(evt);
             }
         });
-        viewReviewsButton.addActionListener(new java.awt.event.ActionListener() {
+        newMemberPanel.getReviewButton().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewReviewsButtonActionPerformed(evt);
             }
         });
-        removeMemberButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\img\\remove.png"));
-        viewReviewsButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\img\\page.png"));
-
         
-        javax.swing.GroupLayout newMemberPanelLayout = new javax.swing.GroupLayout(newMemberPanel);
-        newMemberPanel.setLayout(newMemberPanelLayout);
-        newMemberPanelLayout.setHorizontalGroup(
-            newMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newMemberPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(memberName, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 500, Short.MAX_VALUE)
-                .addComponent(removeMemberButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(viewReviewsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        newMemberPanelLayout.setVerticalGroup(
-            newMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newMemberPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(newMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(memberName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newMemberPanelLayout.createSequentialGroup()
-                        .addGroup(newMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(viewReviewsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                            .addComponent(removeMemberButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
-        );
         selectedGroupInternalPanel.add(newMemberPanel);
         selectedGroupInternalPanel.add(javax.swing.Box.createVerticalGlue());
         
