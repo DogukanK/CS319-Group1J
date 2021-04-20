@@ -3,7 +3,7 @@ package group1j.ReviewTool.UserInterface;
 
 import group1j.ReviewTool.LogicManagement.Assignment;
 import group1j.ReviewTool.LogicManagement.Group;
-import group1j.ReviewTool.LogicManagement.LogicManagement;
+import group1j.ReviewTool.LogicManagement.LMController;
 import group1j.ReviewTool.LogicManagement.User;
 import group1j.ReviewTool.factories.*;
 import java.util.ArrayList;
@@ -345,7 +345,7 @@ public class InstructorScreen extends javax.swing.JFrame {
         usernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
         usernameLabel.setText("   UserName");
-        usernameLabel.setText("User: " + LogicManagement.getCurrentUser().getName());
+        usernameLabel.setText("User: " + LMController.getCurrentUser().getName());
 
         timeLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         timeLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -468,7 +468,7 @@ public class InstructorScreen extends javax.swing.JFrame {
     */
     private void newGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGroupButtonActionPerformed
         try{
-            ArrayList<User> userList = UserInterface.getFreeUserList();
+            ArrayList<User> userList = UIController.getFreeUserList();
             if(userList.size() == 0){
                 throw new Exception("0");
             }
@@ -509,7 +509,7 @@ public class InstructorScreen extends javax.swing.JFrame {
 
     /*
     ** Event handling code for "Create Group" button in the dialog box
-    ** Gets entered group name and selected IDs, sends it to UserInterface class
+    ** Gets entered group name and selected IDs, sends it to UIController class
     ** Refreshes UI in the end to account for the new group
     ** Creates an error box if the name field is empty or
     ** no students are selected.
@@ -532,11 +532,11 @@ public class InstructorScreen extends javax.swing.JFrame {
                 if(groupName.equals("")){
                     throw new Exception("0");
                 }
-                UserInterface.createGroup(selectedIDs,groupName); 
-                addGroupToUI(UserInterface.getGlobalGroupList().get(UserInterface.getGlobalGroupList().size()-1));
+                UIController.createGroup(selectedIDs,groupName); 
+                addGroupToUI(UIController.getGlobalGroupList().get(UIController.getGlobalGroupList().size()-1));
             }
             else if(selectedGroupPanel.isVisible() == true){
-                UserInterface.addMembers(selectedIDs,LogicManagement.getSelectedGroup().getName());
+                UIController.addMembers(selectedIDs,LMController.getSelectedGroup().getName());
                 showGroupMembers();
             }
             createGroupDialog.setVisible(false);
@@ -567,7 +567,7 @@ public class InstructorScreen extends javax.swing.JFrame {
 
     /*
     ** Event handling code for "Create Assignment" button in the dialog box
-    ** Gets entered assignment details, sends it to UserInterface class
+    ** Gets entered assignment details, sends it to UIController class
     ** Refreshes UI in the end to account for the new assignment
     ** Creates an error box if assignment name or description is empty
     */
@@ -579,7 +579,7 @@ public class InstructorScreen extends javax.swing.JFrame {
                 throw new Exception("0");
             }
             
-            UserInterface.createAssignment(aName,aDesc);
+            UIController.createAssignment(aName,aDesc);
             addAssignmentToUI(new Assignment(aName,aDesc));
             this.revalidate();
             aDialogTextField.setText("");
@@ -598,7 +598,7 @@ public class InstructorScreen extends javax.swing.JFrame {
     */
     private void addMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberButtonActionPerformed
         try{
-            ArrayList<User> userList = UserInterface.getFreeUserList();
+            ArrayList<User> userList = UIController.getFreeUserList();
             if(userList.size() == 0){
                 throw new Exception("0");
             }
@@ -631,7 +631,7 @@ public class InstructorScreen extends javax.swing.JFrame {
     ** The panel is filled by showGroupMembers() function
     */
     public void groupViewButtonActionPerformed(String groupName){
-        UserInterface.setSelectedGroup(groupName);
+        UIController.setSelectedGroup(groupName);
         groupsPanel.setVisible(false);
         assignmentsPanel.setVisible(false);
         selectedGroupPanel.setVisible(true);
@@ -646,7 +646,7 @@ public class InstructorScreen extends javax.swing.JFrame {
     // Removes the selected user from group and refreshes UI
     private void removeMemberButtonActionPerformed(java.awt.event.ActionEvent evt){
         int id = Integer.parseInt(((JButton)evt.getSource()).getName());
-        UserInterface.removeMember(id, LogicManagement.getSelectedGroup().getName());
+        UIController.removeMember(id, LMController.getSelectedGroup().getName());
         showGroupMembers();
     }
     
@@ -730,7 +730,7 @@ public class InstructorScreen extends javax.swing.JFrame {
     ** Adds inital data stored in permanent data to the UI 
     */
     private void showInitialAssignments(){
-        ArrayList<Group> groupData= LogicManagement.getGlobalGroupList();
+        ArrayList<Group> groupData= LMController.getGlobalGroupList();
         ArrayList<Assignment> assignmentData = groupData.get(0).getAssignments();
         for(Assignment a : assignmentData){
             addAssignmentToUI(a);
@@ -742,7 +742,7 @@ public class InstructorScreen extends javax.swing.JFrame {
     ** Adds inital data stored in permanent data to the UI 
     */
     private void showInitialGroups(){
-        ArrayList<Group> groupData= LogicManagement.getGlobalGroupList();
+        ArrayList<Group> groupData= LMController.getGlobalGroupList();
         for(Group gr : groupData){
             addGroupToUI(gr);
         }
@@ -754,7 +754,7 @@ public class InstructorScreen extends javax.swing.JFrame {
     */
     private void showGroupMembers(){
         selectedGroupInternalPanel.removeAll();
-        Group currentGroup = LogicManagement.getSelectedGroup();
+        Group currentGroup = LMController.getSelectedGroup();
         for(User u:currentGroup.getMembers()){
             addMemberToUI(u);
         }

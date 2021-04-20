@@ -20,20 +20,20 @@ public class Instructor extends User{
     
     // Add new assignment to all groups' assignment list
     public void createAssignment(String name,String desc){        
-        for(Group traverse : LogicManagement.getGlobalGroupList()){
+        for(Group traverse : LMController.getGlobalGroupList()){
             Assignment newAssn = new Assignment(name,desc);
             traverse.getAssignments().add(newAssn);
         }
     }
     
     /*
-    ** Creates new group and adds it to globalGroupList in LogicManagement
+    ** Creates new group and adds it to globalGroupList in LMController
     ** selectedIDs: IDs of members selected in the UI
     ** groupName: Entered by the user
     */
     public void createGroup(ArrayList<Integer> selectedIDs,String groupName){
         Group newGroup = new Group(groupName);
-        ArrayList<User> userList = LogicManagement.getFreeUserList();
+        ArrayList<User> userList = LMController.getFreeUserList();
         Iterator<User> iter = userList.iterator();
         while(iter.hasNext()){
             User u = iter.next();
@@ -44,13 +44,13 @@ public class Instructor extends User{
                 }
             }
         }
-        if(LogicManagement.getGlobalGroupList().isEmpty() == false){
-            Group dummyGroup = LogicManagement.getGlobalGroupList().get(0);
+        if(LMController.getGlobalGroupList().isEmpty() == false){
+            Group dummyGroup = LMController.getGlobalGroupList().get(0);
             for(Assignment A : dummyGroup.getAssignments()){                 // Copy assignments from an existing group
                 newGroup.getAssignments().add(new Assignment(A.getName(),A.getDescription()));
             }
         }
-        LogicManagement.getGlobalGroupList().add(newGroup);
+        LMController.getGlobalGroupList().add(newGroup);
     }
     
     // NEEDS IMPLEMENTATION

@@ -108,12 +108,12 @@ public class LoginScreen extends JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
-        UserInterface.showSignupScreen();
+        UIController.showSignupScreen();
     }//GEN-LAST:event_signupButtonActionPerformed
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         errorLabel.setVisible(false);
-        if(UserInterface.login(mailField.getText(),pwField.getPassword()) == false){
+        if(UIController.login(mailField.getText(),pwField.getPassword()) == false){
             errorLabel.setVisible(true);
         }
         
