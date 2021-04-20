@@ -1,6 +1,10 @@
 
-package group1j.ReviewTool;
+package group1j.ReviewTool.UserInterface;
 
+import group1j.ReviewTool.LogicManagement.Assignment;
+import group1j.ReviewTool.LogicManagement.Group;
+import group1j.ReviewTool.LogicManagement.LogicManagement;
+import group1j.ReviewTool.LogicManagement.User;
 import group1j.ReviewTool.factories.*;
 import java.util.ArrayList;
 import javax.swing.*;

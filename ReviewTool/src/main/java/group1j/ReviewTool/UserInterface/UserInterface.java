@@ -3,8 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group1j.ReviewTool;
+package group1j.ReviewTool.UserInterface;
 
+import group1j.ReviewTool.LogicManagement.Group;
+import group1j.ReviewTool.LogicManagement.Instructor;
+import group1j.ReviewTool.LogicManagement.LogicManagement;
+import group1j.ReviewTool.LogicManagement.Student;
+import group1j.ReviewTool.LogicManagement.TA;
+import group1j.ReviewTool.LogicManagement.User;
 import java.util.ArrayList;
 
 /**
