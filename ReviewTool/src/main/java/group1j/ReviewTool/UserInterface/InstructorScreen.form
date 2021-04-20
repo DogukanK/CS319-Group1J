@@ -567,7 +567,7 @@
             <Property name="text" type="java.lang.String" value="   UserName"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="usernameLabel.setText(&quot;User: &quot; + LogicManagement.getCurrentUser().getName());&#xd;&#xa;"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="usernameLabel.setText(&quot;User: &quot; + group1j.ReviewTool.LogicManagement.LMController.getCurrentUser().getName());&#xd;&#xa;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="timeLabel">

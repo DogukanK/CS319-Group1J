@@ -1,13 +1,13 @@
-package group1j.ReviewTool;
+package group1j.ReviewTool.LogicManagement;
 import java.util.ArrayList;
 /**
  * @author anilt
- * This is the LogicManagement class, which is the main class
- * for the middle layer. Essentially a connector class,
- * which receives data from and sends data to
- * the UI and DB main classes.
+ This is the LMController class, which is the main class
+ for the middle layer. Essentially a connector class,
+ which receives data from and sends data to
+ the UI and DB main classes.
  */
-public class LogicManagement {
+public class LMController {
     private static ArrayList<Group> globalGroupList = new ArrayList<Group>();
     private static ArrayList<User> globalUserList;
     private static ArrayList<User> freeUserList = new ArrayList<User>();
