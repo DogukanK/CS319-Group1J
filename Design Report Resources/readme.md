@@ -3,7 +3,6 @@ Changes needed for iteration 2:
 Content
 - Replace "reliability" design goal
 - Add access control matrix
-- Remove activity diagram
 - Add subsystem services
 
 Models
