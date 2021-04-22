@@ -11,7 +11,7 @@ Models
 - Redraw use case diagram -- DONE
 - Redraw state diagrams
 - Redraw sequence diagrams -- Partially done
-- Draw class diagram -- Partially done
+- Draw class diagram -- DONE
 
 Formatting
 - Add references
