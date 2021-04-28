@@ -1,5 +1,5 @@
 
-package group1j.ReviewTool.LogicManagement;
+package group1j.ReviewTool.BusinessLogic;
 
 /**
  * @author anilt

@@ -1,4 +1,4 @@
-package group1j.ReviewTool.LogicManagement;
+package group1j.ReviewTool.BusinessLogic;
 import java.util.ArrayList;
 import java.util.HashMap;
 /**
@@ -20,6 +20,7 @@ public class Group {
         this.name = name;
         this.assignments = new ArrayList<Assignment>();
         this.members = new ArrayList<User>();
+        this.UReviews = new HashMap<User,UReview>();
     }
 
     public String getName() {

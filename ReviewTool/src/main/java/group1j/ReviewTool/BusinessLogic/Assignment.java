@@ -1,4 +1,4 @@
-package group1j.ReviewTool.LogicManagement;
+package group1j.ReviewTool.BusinessLogic;
 import java.util.HashMap;
 /**
  * @author anilt

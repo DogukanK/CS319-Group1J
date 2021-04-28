@@ -3,19 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group1j.ReviewTool.UserInterface;
+package group1j.ReviewTool.UserInterface.screens;
 
 /**
  *
  * @author anilt
  */
-public class StudentScreen extends javax.swing.JFrame {
+public class StudentScreen extends javax.swing.JFrame implements Refreshable{
 
     /**
      * Creates new form StudentScreen
      */
     public StudentScreen() {
         initComponents();
+    }
+    
+    public void refreshUI(){
+        this.revalidate();
     }
 
     /**

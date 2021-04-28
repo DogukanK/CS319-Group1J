@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group1j.ReviewTool.UserInterface;
+package group1j.ReviewTool.UserInterface.screens;
 
 /**
  *
  * @author anilt
  */
-public class TAScreen extends javax.swing.JFrame {
+public class TAScreen extends javax.swing.JFrame implements Refreshable{
 
     /**
      * Creates new form TAScreen
@@ -18,6 +18,9 @@ public class TAScreen extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void refreshUI(){
+        this.revalidate();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

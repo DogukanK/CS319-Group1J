@@ -1,5 +1,5 @@
 
-package group1j.ReviewTool.factories;
+package group1j.ReviewTool.UserInterface.factories;
 
 import javax.swing.JPanel;
 
@@ -18,6 +18,10 @@ public class PanelFactory {
         }
         else if(type.equalsIgnoreCase("member")){
             return new MemberPanel();
+        }
+        
+        else if(type.equalsIgnoreCase("smallmember")){
+            return new SmallMemberPanel();
         }
         
         return null;

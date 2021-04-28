@@ -1,4 +1,4 @@
-package group1j.ReviewTool.LogicManagement;
+package group1j.ReviewTool.BusinessLogic;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,20 +20,20 @@ public class Instructor extends User{
     
     // Add new assignment to all groups' assignment list
     public void createAssignment(String name,String desc){        
-        for(Group traverse : LMController.getGlobalGroupList()){
+        for(Group traverse : BMController.getGlobalGroupList()){
             Assignment newAssn = new Assignment(name,desc);
             traverse.getAssignments().add(newAssn);
         }
     }
     
     /*
-    ** Creates new group and adds it to globalGroupList in LMController
+    ** Creates new group and adds it to globalGroupList in BMController
     ** selectedIDs: IDs of members selected in the UI
     ** groupName: Entered by the user
     */
     public void createGroup(ArrayList<Integer> selectedIDs,String groupName){
         Group newGroup = new Group(groupName);
-        ArrayList<User> userList = LMController.getFreeUserList();
+        ArrayList<User> userList = BMController.getFreeUserList();
         Iterator<User> iter = userList.iterator();
         while(iter.hasNext()){
             User u = iter.next();
@@ -44,13 +44,13 @@ public class Instructor extends User{
                 }
             }
         }
-        if(LMController.getGlobalGroupList().isEmpty() == false){
-            Group dummyGroup = LMController.getGlobalGroupList().get(0);
+        if(BMController.getGlobalGroupList().isEmpty() == false){
+            Group dummyGroup = BMController.getGlobalGroupList().get(0);
             for(Assignment A : dummyGroup.getAssignments()){                 // Copy assignments from an existing group
                 newGroup.getAssignments().add(new Assignment(A.getName(),A.getDescription()));
             }
         }
-        LMController.getGlobalGroupList().add(newGroup);
+        BMController.getGlobalGroupList().add(newGroup);
     }
     
     // NEEDS IMPLEMENTATION

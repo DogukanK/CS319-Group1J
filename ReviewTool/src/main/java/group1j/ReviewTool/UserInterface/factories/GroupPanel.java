@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package group1j.ReviewTool.factories;
+
+package group1j.ReviewTool.UserInterface.factories;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 
 /**
  *
@@ -26,7 +22,7 @@ public class GroupPanel extends UIPanel{
         label.setForeground(new java.awt.Color(0, 0, 0));
         
         viewButton.setBackground(new java.awt.Color(255, 255, 255));
-        viewButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\img\\view.png"));
+        viewButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\UserInterface\\img\\view.png"));
         viewButton.setBorder(null);this.setBackground(new java.awt.Color(255, 255, 255));
         
             
@@ -51,19 +47,27 @@ public class GroupPanel extends UIPanel{
     }
     
     
+    @Override
     public void setLabel(String label){
         this.label.setText(label);
     }
     
+    @Override
     public JButton getViewButton(){
         return viewButton;
     }
     
+    @Override
     public JButton getRemoveButton(){
         return null;
     }
     
+    @Override
     public JButton getReviewButton(){
+        return null;
+    }
+    
+    public JToggleButton getToggleButton(){
         return null;
     }
 }

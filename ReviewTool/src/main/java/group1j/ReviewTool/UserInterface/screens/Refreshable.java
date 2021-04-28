@@ -3,17 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group1j.ReviewTool.LogicManagement;
+package group1j.ReviewTool.UserInterface.screens;
 
 /**
  *
  * @author anilt
  */
-public class TA extends User{
+public interface Refreshable {
     
-    public TA(int id, String email, String name) {
-        this.id = id;
-        this.email = email;
-        this.name = name;
-    }
+    public void refreshUI();
 }

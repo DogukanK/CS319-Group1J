@@ -1,5 +1,5 @@
 
-package group1j.ReviewTool.UserInterface;
+package group1j.ReviewTool.UserInterface.screens;
 
 /**
  * @author anilt
@@ -9,16 +9,22 @@ package group1j.ReviewTool.UserInterface;
  * code for the UI.
  */
 
+import group1j.ReviewTool.UserInterface.UIController;
 import javax.swing.*;
-public class LoginScreen extends JFrame{
+public class LoginScreen extends JFrame implements Refreshable{
 
     /**
      * Creates new form LoginScreen
      */
+    
+    public void refreshUI(){
+        this.revalidate();
+    }
+    
     public LoginScreen() {
         
         initComponents();
-        whiteBgLabel.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\img\\whiteBackground.png"));
+        whiteBgLabel.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\UserInterface\\img\\whiteBackground.png"));
     }
 
     /**
@@ -92,8 +98,8 @@ public class LoginScreen extends JFrame{
         errorLabel.setText("Invalid E-Mail or Password");
         whiteBgPanel.add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 230, 40));
 
-        mailLabel.setText("E-Mail Address:");
-        whiteBgPanel.add(mailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, -1, 40));
+        mailLabel.setText("    Mail Address:");
+        whiteBgPanel.add(mailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 90, 40));
 
         pwLabel.setText("Password:");
         whiteBgPanel.add(pwLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, 33));
@@ -108,7 +114,8 @@ public class LoginScreen extends JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
-        UIController.showSignupScreen();
+        UIController.changeScreen("signup");
+        this.setVisible(false);
     }//GEN-LAST:event_signupButtonActionPerformed
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked

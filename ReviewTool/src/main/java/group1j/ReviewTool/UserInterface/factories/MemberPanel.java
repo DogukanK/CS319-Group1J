@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group1j.ReviewTool.factories;
+package group1j.ReviewTool.UserInterface.factories;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
@@ -37,8 +35,8 @@ public class MemberPanel extends UIPanel{
         
         this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         
-        removeButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\img\\remove.png"));
-        reviewButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\img\\page.png"));
+        removeButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\UserInterface\\img\\remove.png"));
+        reviewButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\UserInterface\\img\\page.png"));
 
         
         javax.swing.GroupLayout newMemberPanelLayout = new javax.swing.GroupLayout(this);
@@ -81,5 +79,9 @@ public class MemberPanel extends UIPanel{
     
     public JButton getReviewButton(){
         return reviewButton;
+    }
+    
+    public JToggleButton getToggleButton(){
+        return null;
     }
 }

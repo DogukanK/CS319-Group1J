@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group1j.ReviewTool.LogicManagement;
+package group1j.ReviewTool.BusinessLogic;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -11,10 +13,12 @@ package group1j.ReviewTool.LogicManagement;
  */
 public class Student extends User{
     
+    private ArrayList<UReview> reviews;
     public Student(int id, String email, String name) {
         this.id = id;
         this.email = email;
         this.name = name;
+        this.reviews = new ArrayList<UReview>();
     }
      
     public void uploadFile(Assignment targetAssignment,String fileName){
@@ -31,5 +35,9 @@ public class Student extends User{
     
     // NEEDS IMPLEMENTATION
     public void removePeerReview(String uName,String gName,String reviewer){
+    }
+    
+    public ArrayList<UReview> getReviews(){
+        return reviews;
     }
 }
