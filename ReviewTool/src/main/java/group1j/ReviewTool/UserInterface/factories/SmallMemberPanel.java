@@ -50,6 +50,8 @@ public class SmallMemberPanel extends UIPanel{
         return button;
     }
     
+    public void setLabel2(String label){}
+    
     public void setLabel(String label){
         
     }

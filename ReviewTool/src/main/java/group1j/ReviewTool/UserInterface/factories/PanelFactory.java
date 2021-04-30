@@ -24,6 +24,10 @@ public class PanelFactory {
             return new SmallMemberPanel();
         }
         
+        else if(type.equalsIgnoreCase("stMember")){
+            return new stMemberPanel();
+        }
+        
         return null;
     }
 }

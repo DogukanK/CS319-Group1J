@@ -29,6 +29,7 @@ public class AssignmentPanel extends UIPanel{
             viewButton.setBackground(new java.awt.Color(255, 255, 255));
             viewButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\UserInterface\\img/view.png"));
             viewButton.setBorder(null);
+            viewButton.setFocusPainted(false);
         
             this.setBackground(new java.awt.Color(255, 255, 255));
             this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -55,6 +56,8 @@ public class AssignmentPanel extends UIPanel{
     public void setLabel(String label){
         this.label.setText(label);
     }
+    
+    public void setLabel2(String label){}
     
     public JButton getViewButton(){
         return viewButton;

@@ -14,6 +14,8 @@ import javax.swing.*;
 public abstract class UIPanel extends JPanel{
     public abstract void setLabel(String label);
     
+    public abstract void setLabel2(String label);
+    
     public abstract JButton getViewButton();
     
     public abstract JButton getRemoveButton();

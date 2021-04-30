@@ -31,7 +31,7 @@ public class InstructorScreen extends javax.swing.JFrame implements Refreshable{
     public InstructorScreen() {
         initComponents();
         setIcons();
-        switchingPanels = new ArrayList<JPanel>();
+        switchingPanels = new ArrayList<>();
         switchingPanels.add(groupsPanel);
         switchingPanels.add(assignmentsPanel);
         switchingPanels.add(selectedGroupPanel);
@@ -404,6 +404,7 @@ public class InstructorScreen extends javax.swing.JFrame implements Refreshable{
         newGroupButton.setForeground(new java.awt.Color(0, 0, 0));
         newGroupButton.setText("Create New Group");
         newGroupButton.setBorder(null);
+        newGroupButton.setFocusPainted(false);
         newGroupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newGroupButtonActionPerformed(evt);
@@ -412,6 +413,7 @@ public class InstructorScreen extends javax.swing.JFrame implements Refreshable{
         groupsPanel.add(newGroupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, 250, 40));
 
         groupsInternalPanel.setBackground(new java.awt.Color(255, 255, 255));
+        groupsInternalPanel.setAlignmentY(0.0F);
         groupsInternalPanel.setLayout(new javax.swing.BoxLayout(groupsInternalPanel, javax.swing.BoxLayout.Y_AXIS));
         groupsScrollPane.setViewportView(groupsInternalPanel);
 
@@ -433,6 +435,7 @@ public class InstructorScreen extends javax.swing.JFrame implements Refreshable{
         newAssignmentButton.setForeground(new java.awt.Color(0, 0, 0));
         newAssignmentButton.setText("Create New Assignment");
         newAssignmentButton.setBorder(null);
+        newAssignmentButton.setFocusPainted(false);
         newAssignmentButton.setMaximumSize(new java.awt.Dimension(168, 40));
         newAssignmentButton.setMinimumSize(new java.awt.Dimension(168, 40));
         newAssignmentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -462,6 +465,7 @@ public class InstructorScreen extends javax.swing.JFrame implements Refreshable{
         addMemberButton.setToolTipText("");
         addMemberButton.setBorder(null);
         addMemberButton.setBorderPainted(false);
+        addMemberButton.setFocusPainted(false);
         addMemberButton.setMaximumSize(new java.awt.Dimension(168, 40));
         addMemberButton.setMinimumSize(new java.awt.Dimension(168, 40));
         addMemberButton.setPreferredSize(new java.awt.Dimension(168, 40));
@@ -470,9 +474,9 @@ public class InstructorScreen extends javax.swing.JFrame implements Refreshable{
                 addMemberButtonActionPerformed(evt);
             }
         });
-        selectedGroupPanel.add(addMemberButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, 210, 40));
+        selectedGroupPanel.add(addMemberButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, 250, 40));
 
-        middlePanel.add(selectedGroupPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 560));
+        middlePanel.add(selectedGroupPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 1140, 560));
 
         peerReviewsPanel.setBackground(new java.awt.Color(255, 255, 255));
         peerReviewsPanel.setMinimumSize(new java.awt.Dimension(1140, 560));
@@ -756,12 +760,16 @@ public class InstructorScreen extends javax.swing.JFrame implements Refreshable{
             }
             
             prLabel2.setText("Select a reviewer from the member list");
+            prTextPane.setText("");
+            prLabel3.setText("");
             prLeftPanel.add(smallMemberPanel);
             buttonGroup2.clearSelection();
         }
         
         if(count == 0){
             prLabel2.setText("No reviews made for" + selectedUser.getName() + "yet");
+            prTextPane.setText("");
+            prLabel3.setText("");
         }
     }
     
