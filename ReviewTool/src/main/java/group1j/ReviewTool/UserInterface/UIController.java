@@ -104,7 +104,11 @@ public class UIController {
         
     }
     
-    public static void addPeerReview(Student targetUser,String comment,int point){
+    public static void addPeerReview(){
+        
+    }
+    
+    public static void removePeerReview(){
         
     }
     

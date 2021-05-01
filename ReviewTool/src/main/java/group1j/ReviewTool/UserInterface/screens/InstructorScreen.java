@@ -474,7 +474,7 @@ public class InstructorScreen extends javax.swing.JFrame implements Refreshable{
                 addMemberButtonActionPerformed(evt);
             }
         });
-        selectedGroupPanel.add(addMemberButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, 250, 40));
+        selectedGroupPanel.add(addMemberButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, 250, 40));
 
         middlePanel.add(selectedGroupPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 1140, 560));
 

@@ -1,6 +1,5 @@
 package group1j.ReviewTool.BusinessLogic;
 import java.util.ArrayList;
-import java.util.HashMap;
 /**
  * @author anilt
  This is the BMController class, which is the main class
@@ -39,7 +38,7 @@ public class BMController {
         Student st4 = new Student(004,"st4@reviewtool.com"," David D.");
         Student st5 = new Student(005,"st5@reviewtool.com"," Eve E.");
         
-        UReview u1 = new UReview(8,"Lorem ipsum dolor sit amet, "
+        UReview u1 = new UReview(10,"Lorem ipsum dolor sit amet, "
                 + "consectetur adipiscing elit. Quisque semper "
                 + "ante nibh, vitae posuere nisi sagittis ut. "
                 + "Nullam elit mi, vehicula vel consectetur id, laoreet "
@@ -61,17 +60,11 @@ public class BMController {
         ((Instructor) currentUser).createGroup(new ArrayList<Integer>(),"Group1E");
         
         
-        ((Instructor) currentUser).createAssignment("Requirements Elicitation Report", "Analysis Document of a project, also known as a "
-                + "Software Requirements Specification (SRS), is produced as a result of the analysis of the system "
-                + "to be developed. The requirements provided by the customer are analyzed carefully and this document is produced as a result of a "
-                + "thorough analysis of the system at hand. In a sense, this document is a contract between the developer (“you”) and the user/customer (“us” in this case).\n" 
-                + "Once you feel your analysis document is complete, you may begin your design. This phase is perhaps the most "
-                + "crucial of all and should be dedicated sufficient time. A project without a proper design might actually receive a "
-                + "failing grade even if its implementation is completely finished.");
-        ((Instructor) currentUser).createAssignment("Analysis Report Iteration 1", "this is a2");
-        ((Instructor) currentUser).createAssignment("Design Report Iteration 1", "this is a3");
-        ((Instructor) currentUser).createAssignment("Analysis Report Iteration 2", "this is a4");
-        ((Instructor) currentUser).createAssignment("Design Report Iteration 2", "this is a5");
+        ((Instructor) currentUser).createAssignment("Assignment 1", "this is a1");
+        ((Instructor) currentUser).createAssignment("Assignment 2", "this is a2");
+        ((Instructor) currentUser).createAssignment("Assignment 3", "this is a3");
+        ((Instructor) currentUser).createAssignment("Assignment 4", "this is a4");
+        ((Instructor) currentUser).createAssignment("Assignment 5", "this is a5");
         
         globalGroupList.get(0).getMembers().add(currentUser);
         globalGroupList.get(0).getMembers().add(st1);
@@ -84,21 +77,8 @@ public class BMController {
         ((Student) globalGroupList.get(0).getMembers().get(1)).getReviews().add(u2);
         ((Student) globalGroupList.get(0).getMembers().get(1)).getReviews().add(u3);
         
-        globalGroupList.get(0).getAssignments().get(0).getArtifacts().add("Artifact 1");
-        globalGroupList.get(0).getAssignments().get(0).getArtifacts().add("Artifact 2");
-        globalGroupList.get(0).getAssignments().get(0).getArtifacts().add("Artifact 3");
-        globalGroupList.get(0).getAssignments().get(0).getArtifacts().add("Artifact 4");
-        globalGroupList.get(0).getAssignments().get(0).getArtifacts().add("Artifact 5");
         
-        
-        ArrayList<ArtifactReview> a1Reviews = new ArrayList<>();
-        a1Reviews.add(new ArtifactReview(st1,"Review of Alice"));
-        a1Reviews.add(new ArtifactReview(st2,"Review of Bob"));
-        a1Reviews.add(new ArtifactReview(st3,"Review of Charlie"));
-        a1Reviews.add(new ArtifactReview(st4,"Review of David"));
-        
-        globalGroupList.get(0).getAssignments().get(0).getAReviews().put("Artifact 1", a1Reviews);
-        currentUser = st2;
+        currentUser = st1;
         return true;
     }
     

@@ -13,11 +13,9 @@ public class PanelFactory {
         if(type.equalsIgnoreCase("group")){
             return new GroupPanel();
         }
-        
         else if(type.equalsIgnoreCase("assignment")){
             return new AssignmentPanel();
         }
-        
         else if(type.equalsIgnoreCase("member")){
             return new MemberPanel();
         }
@@ -27,11 +25,7 @@ public class PanelFactory {
         }
         
         else if(type.equalsIgnoreCase("stMember")){
-            return new STMemberPanel();
-        }
-        
-        else if(type.equalsIgnoreCase("artPanel")){
-            return new ArtifactPanel();
+            return new stMemberPanel();
         }
         
         return null;

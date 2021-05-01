@@ -1,5 +1,4 @@
 package group1j.ReviewTool.BusinessLogic;
-import java.util.ArrayList;
 import java.util.HashMap;
 /**
  * @author anilt
@@ -12,15 +11,12 @@ import java.util.HashMap;
 public class Assignment {
     private String name;
     private String filePath;
-    private ArrayList<String> artifacts;
-    private HashMap<String,ArrayList<ArtifactReview>> artifactReviews;
+    private HashMap<User,String> AReviews;
     private String description;
 
     public Assignment(String name, String description) {
         this.name = name;
         this.description = description;
-        this.artifacts = new ArrayList<>();
-        this.artifactReviews = new HashMap<>();
     }
 
     public String getName() {
@@ -39,12 +35,8 @@ public class Assignment {
         this.description = description;
     }
 
-    public HashMap<String, ArrayList<ArtifactReview>> getAReviews() {
-        return artifactReviews;
-    }
-    
-    public ArrayList<String> getArtifacts(){
-        return artifacts;
+    public HashMap<User, String> getAReviews() {
+        return AReviews;
     }
     
 }

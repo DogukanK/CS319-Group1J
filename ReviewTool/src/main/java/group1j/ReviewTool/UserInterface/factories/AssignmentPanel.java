@@ -23,7 +23,7 @@ public class AssignmentPanel extends UIPanel{
             label = new javax.swing.JLabel();
             viewButton = new javax.swing.JButton();
             
-            label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+            label.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
             label.setForeground(new java.awt.Color(0, 0, 0));
         
             viewButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -38,8 +38,8 @@ public class AssignmentPanel extends UIPanel{
             newButtonPanelLayout.setHorizontalGroup(newButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newButtonPanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 542, Short.MAX_VALUE)
+                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 642, Short.MAX_VALUE)
                 .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
             );
