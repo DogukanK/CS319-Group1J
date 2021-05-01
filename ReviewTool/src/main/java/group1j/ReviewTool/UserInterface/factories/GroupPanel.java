@@ -52,8 +52,6 @@ public class GroupPanel extends UIPanel{
         this.label.setText(label);
     }
     
-    public void setLabel2(String label){}
-    
     @Override
     public JButton getViewButton(){
         return viewButton;

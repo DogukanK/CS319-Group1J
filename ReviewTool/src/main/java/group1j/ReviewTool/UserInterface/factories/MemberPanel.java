@@ -33,9 +33,6 @@ public class MemberPanel extends UIPanel{
         removeButton.setBackground(new java.awt.Color(255, 255, 255));
         reviewButton.setBackground(new java.awt.Color(255, 255, 255));
         
-        removeButton.setFocusPainted(false);
-        reviewButton.setFocusPainted(false);
-        
         this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         
         removeButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\UserInterface\\img\\remove.png"));
@@ -71,8 +68,6 @@ public class MemberPanel extends UIPanel{
     public void setLabel(String label){
         this.label.setText(label);
     }
-    
-    public void setLabel2(String label){}
     
     public JButton getViewButton(){
         return null;
