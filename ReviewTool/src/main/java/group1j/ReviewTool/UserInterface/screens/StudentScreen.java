@@ -11,9 +11,11 @@ import group1j.ReviewTool.UserInterface.factories.*;
 import java.awt.Dimension;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 /**
@@ -22,11 +24,21 @@ import javax.swing.Timer;
  */
 public class StudentScreen extends javax.swing.JFrame implements Refreshable{
 
+    
+    private ArrayList<JPanel> switchingPanels;
+    private Student targetStudent;
+    
     /**
      * Creates new form StudentScreen
      */
     public StudentScreen() {
         initComponents();
+        switchingPanels = new ArrayList<>();
+        switchingPanels.add(myGroupPanel);
+        switchingPanels.add(peerReviewPanel);
+        switchingPanels.add(selectedAssignmentPanel);
+        switchingPanels.add(assignmentsPanel);
+        setIcons();
     }
     
     public void refreshUI(){
@@ -43,17 +55,20 @@ public class StudentScreen extends javax.swing.JFrame implements Refreshable{
     private void initComponents() {
 
         emp = new javax.swing.JPanel();
-        avatarIcon = new java.awt.Label();
-        memberName = new javax.swing.JLabel();
-        rankLabel = new javax.swing.JLabel();
+        artLabel1 = new javax.swing.JLabel();
+        artLabel2 = new javax.swing.JLabel();
+        removeButton = new javax.swing.JButton();
         reviewButton = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        artP = new javax.swing.JPanel();
+        avatarIcon1 = new java.awt.Label();
+        memberName1 = new javax.swing.JLabel();
+        rankLabel1 = new javax.swing.JLabel();
+        reviewButton1 = new javax.swing.JButton();
         leftPanel = new javax.swing.JPanel();
         myGroupButton = new javax.swing.JToggleButton();
         myGroupButton.setFocusPainted(false);
         assignmentsButton = new javax.swing.JToggleButton();
-        assignmentsButton.setFocusPainted(false);
-        prsButton = new javax.swing.JToggleButton();
         assignmentsButton.setFocusPainted(false);
         topPanel = new javax.swing.JPanel();
         usernameLabel = new javax.swing.JLabel();
@@ -64,59 +79,138 @@ public class StudentScreen extends javax.swing.JFrame implements Refreshable{
         myGroupSP = new javax.swing.JScrollPane();
         myGroupInternalPanel = new javax.swing.JPanel();
         showMembers();
+        peerReviewPanel = new javax.swing.JPanel();
+        prLabel1 = new javax.swing.JLabel();
+        prLabel2 = new javax.swing.JLabel();
+        prLabel3 = new javax.swing.JLabel();
+        updateReviewButton = new javax.swing.JButton();
+        prSp2 = new javax.swing.JScrollPane();
+        commentArea = new javax.swing.JTextPane();
+        prTF1 = new javax.swing.JTextField();
+        prTF2 = new javax.swing.JTextField();
+        assignmentsPanel = new javax.swing.JPanel();
+        assignmentsScrollPane = new javax.swing.JScrollPane();
+        assignmentsInternalPanel = new javax.swing.JPanel();
+        showInitialAssignments();
+        selectedAssignmentPanel = new javax.swing.JPanel();
+        saSP = new javax.swing.JScrollPane();
+        saInternalPanel = new javax.swing.JPanel();
+        uploadArtifactButton = new javax.swing.JButton();
+        assnNameLabel = new javax.swing.JLabel();
+        assnLabel3 = new javax.swing.JLabel();
+        dueDateLabel = new javax.swing.JLabel();
+        descSP = new javax.swing.JScrollPane();
+        assnDescField = new javax.swing.JTextPane();
+        assnLabel2 = new javax.swing.JLabel();
 
         emp.setBackground(new java.awt.Color(255, 255, 255));
         emp.setPreferredSize(new java.awt.Dimension(1140, 120));
 
-        memberName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        memberName.setText("jLabel2");
+        artLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        artLabel1.setText("Artifact 1");
 
-        rankLabel.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        rankLabel.setText("jLabel1");
+        artLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        artLabel2.setText("Status: Pending for Review");
+
+        removeButton.setBackground(new java.awt.Color(255, 255, 255));
+        removeButton.setForeground(new java.awt.Color(255, 255, 255));
+        removeButton.setBorder(null);
+        removeButton.setBorderPainted(false);
+        removeButton.setFocusPainted(false);
+        removeButton.setFocusable(false);
 
         reviewButton.setBackground(new java.awt.Color(255, 255, 255));
         reviewButton.setForeground(new java.awt.Color(255, 255, 255));
         reviewButton.setBorder(null);
+        reviewButton.setBorderPainted(false);
         reviewButton.setFocusPainted(false);
+        reviewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reviewButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout empLayout = new javax.swing.GroupLayout(emp);
         emp.setLayout(empLayout);
         empLayout.setHorizontalGroup(
             empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(empLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(avatarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(memberName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(empLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(rankLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 647, Short.MAX_VALUE)
-                .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addGap(17, 17, 17)
+                .addComponent(artLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(artLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 419, Short.MAX_VALUE)
+                .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
         empLayout.setVerticalGroup(
             empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(empLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(25, 25, 25)
                 .addGroup(empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(artLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                    .addComponent(artLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(empLayout.createSequentialGroup()
-                        .addComponent(memberName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addGroup(empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        artP.setBackground(new java.awt.Color(255, 255, 255));
+        artP.setPreferredSize(new java.awt.Dimension(1140, 120));
+
+        memberName1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        memberName1.setText("jLabel2");
+
+        rankLabel1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        rankLabel1.setText("jLabel1");
+
+        reviewButton1.setBackground(new java.awt.Color(255, 255, 255));
+        reviewButton1.setForeground(new java.awt.Color(255, 255, 255));
+        reviewButton1.setBorder(null);
+        reviewButton1.setFocusPainted(false);
+
+        javax.swing.GroupLayout artPLayout = new javax.swing.GroupLayout(artP);
+        artP.setLayout(artPLayout);
+        artPLayout.setHorizontalGroup(
+            artPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(artPLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(avatarIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(artPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(memberName1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(artPLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(rankLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 647, Short.MAX_VALUE)
+                .addComponent(reviewButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
+        );
+        artPLayout.setVerticalGroup(
+            artPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(artPLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(artPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(artPLayout.createSequentialGroup()
+                        .addComponent(memberName1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rankLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(avatarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rankLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(avatarIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, empLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, artPLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(reviewButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ReviewTool");
         setMinimumSize(new java.awt.Dimension(1300, 640));
-        setPreferredSize(new java.awt.Dimension(1300, 640));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -141,7 +235,7 @@ public class StudentScreen extends javax.swing.JFrame implements Refreshable{
         buttonGroup1.add(assignmentsButton);
         assignmentsButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         assignmentsButton.setForeground(new java.awt.Color(255, 255, 255));
-        assignmentsButton.setText("Peer Reviews");
+        assignmentsButton.setText("Assignments");
         assignmentsButton.setBorder(null);
         assignmentsButton.setFocusPainted(false);
         assignmentsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -149,21 +243,7 @@ public class StudentScreen extends javax.swing.JFrame implements Refreshable{
                 assignmentsButtonActionPerformed(evt);
             }
         });
-        leftPanel.add(assignmentsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 160, 90));
-
-        prsButton.setBackground(new java.awt.Color(23, 35, 51));
-        buttonGroup1.add(prsButton);
-        prsButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        prsButton.setForeground(new java.awt.Color(255, 255, 255));
-        prsButton.setText("Assignments");
-        prsButton.setBorder(null);
-        prsButton.setFocusPainted(false);
-        prsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prsButtonActionPerformed(evt);
-            }
-        });
-        leftPanel.add(prsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 160, 90));
+        leftPanel.add(assignmentsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 160, 90));
 
         getContentPane().add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 640));
 
@@ -208,6 +288,7 @@ public class StudentScreen extends javax.swing.JFrame implements Refreshable{
         myGroupPanel.setPreferredSize(new java.awt.Dimension(1140, 560));
         myGroupPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        myGroupSP.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         myGroupSP.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         myGroupInternalPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -218,6 +299,133 @@ public class StudentScreen extends javax.swing.JFrame implements Refreshable{
 
         middlePanel.add(myGroupPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 560));
 
+        peerReviewPanel.setBackground(new java.awt.Color(255, 255, 255));
+        peerReviewPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        prLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        prLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        prLabel1.setText("Your Peer Review of User1's Performance");
+        peerReviewPanel.add(prLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 914, 114));
+
+        prLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        prLabel2.setText("Your Comment:");
+        peerReviewPanel.add(prLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 130, 46));
+
+        prLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        prLabel3.setText("Given Grade:");
+        peerReviewPanel.add(prLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 110, 50));
+
+        updateReviewButton.setBackground(new java.awt.Color(23, 35, 51));
+        updateReviewButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateReviewButton.setText("Update Review");
+        updateReviewButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        updateReviewButton.setBorderPainted(false);
+        updateReviewButton.setFocusPainted(false);
+        updateReviewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateReviewButtonActionPerformed(evt);
+            }
+        });
+        peerReviewPanel.add(updateReviewButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 140, 60));
+
+        commentArea.setBackground(new java.awt.Color(23, 35, 51));
+        commentArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        commentArea.setForeground(new java.awt.Color(255, 255, 255));
+        commentArea.setText(" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lobortis magna vitae consectetur tempor. Aliquam eu molestie justo. Integer quis diam feugiat, vulputate elit non, consequat dui. Sed vitae felis purus. Nulla sagittis commodo elit nec lobortis. Praesent rhoncus, neque sed interdum scelerisque, ante nunc scelerisque ligula, vitae iaculis augue nulla sit amet nisl. Morbi egestas diam sit amet odio molestie maximus at vel erat. Integer consequat mi sit amet nunc sodales, nec vehicula libero congue.");
+        prSp2.setViewportView(commentArea);
+
+        peerReviewPanel.add(prSp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 730, 250));
+
+        prTF1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        prTF1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        prTF1.setText("10");
+        prTF1.setBorder(null);
+        prTF1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        peerReviewPanel.add(prTF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 30, 50));
+
+        prTF2.setEditable(false);
+        prTF2.setBackground(new java.awt.Color(255, 255, 255));
+        prTF2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        prTF2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        prTF2.setText("/ 10");
+        prTF2.setBorder(null);
+        prTF2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        prTF2.setFocusable(false);
+        prTF2.setHighlighter(null);
+        peerReviewPanel.add(prTF2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 40, 50));
+
+        middlePanel.add(peerReviewPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 560));
+
+        assignmentsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        assignmentsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        assignmentsScrollPane.setBorder(null);
+
+        assignmentsInternalPanel.setBackground(new java.awt.Color(255, 255, 255));
+        assignmentsInternalPanel.setLayout(new javax.swing.BoxLayout(assignmentsInternalPanel, javax.swing.BoxLayout.Y_AXIS));
+        assignmentsScrollPane.setViewportView(assignmentsInternalPanel);
+
+        assignmentsPanel.add(assignmentsScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 560));
+
+        middlePanel.add(assignmentsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 1140, 560));
+
+        selectedAssignmentPanel.setBackground(new java.awt.Color(255, 255, 255));
+        selectedAssignmentPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        saSP.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        saInternalPanel.setBackground(new java.awt.Color(255, 255, 255));
+        saInternalPanel.setLayout(new javax.swing.BoxLayout(saInternalPanel, javax.swing.BoxLayout.Y_AXIS));
+        saSP.setViewportView(saInternalPanel);
+
+        selectedAssignmentPanel.add(saSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1140, 400));
+
+        uploadArtifactButton.setBackground(new java.awt.Color(255, 255, 255));
+        uploadArtifactButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        uploadArtifactButton.setForeground(new java.awt.Color(0, 0, 0));
+        uploadArtifactButton.setText("Upload Artifact");
+        uploadArtifactButton.setToolTipText("");
+        uploadArtifactButton.setBorder(null);
+        uploadArtifactButton.setBorderPainted(false);
+        uploadArtifactButton.setFocusPainted(false);
+        uploadArtifactButton.setMaximumSize(new java.awt.Dimension(168, 40));
+        uploadArtifactButton.setMinimumSize(new java.awt.Dimension(168, 40));
+        uploadArtifactButton.setPreferredSize(new java.awt.Dimension(168, 40));
+        uploadArtifactButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadArtifactButtonActionPerformed(evt);
+            }
+        });
+        selectedAssignmentPanel.add(uploadArtifactButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, 250, 40));
+
+        assnNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        assnNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        assnNameLabel.setText("Design Report Iteration 1");
+        selectedAssignmentPanel.add(assnNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 340, 50));
+
+        assnLabel3.setText("Due Date:");
+        selectedAssignmentPanel.add(assnLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 80, 110, 70));
+
+        dueDateLabel.setText("13/8/2021");
+        selectedAssignmentPanel.add(dueDateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 80, 160, 70));
+
+        descSP.setBackground(new java.awt.Color(255, 255, 255));
+        descSP.setBorder(null);
+        descSP.setFocusable(false);
+
+        assnDescField.setEditable(false);
+        assnDescField.setBackground(new java.awt.Color(23, 35, 51));
+        assnDescField.setBorder(null);
+        assnDescField.setForeground(new java.awt.Color(255, 255, 255));
+        descSP.setViewportView(assnDescField);
+
+        selectedAssignmentPanel.add(descSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 760, 70));
+
+        assnLabel2.setText("Description:");
+        selectedAssignmentPanel.add(assnLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 90, 70));
+
+        middlePanel.add(selectedAssignmentPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 1140, 560));
+
         getContentPane().add(middlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 1140, 560));
 
         pack();
@@ -225,18 +433,87 @@ public class StudentScreen extends javax.swing.JFrame implements Refreshable{
     }// </editor-fold>//GEN-END:initComponents
 
     private void myGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myGroupButtonActionPerformed
-        //switchPanel("myGroup");
+        switchPanel("myGroup");
     }//GEN-LAST:event_myGroupButtonActionPerformed
 
+    private void updateReviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateReviewButtonActionPerformed
+        UIController.addPeerReview(targetStudent,commentArea.getText(),Integer.parseInt(prTF1.getText()));
+        switchPanel("mygroup");
+    }//GEN-LAST:event_updateReviewButtonActionPerformed
+
+    private void uploadArtifactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadArtifactButtonActionPerformed
+       
+    }//GEN-LAST:event_uploadArtifactButtonActionPerformed
+
     private void assignmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignmentsButtonActionPerformed
-        //switchPanel("assignments");
+        switchPanel("assignments");
     }//GEN-LAST:event_assignmentsButtonActionPerformed
 
-    private void prsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prsButtonActionPerformed
-        //switchPanel("prs");
-    }//GEN-LAST:event_prsButtonActionPerformed
+    private void reviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reviewButtonActionPerformed
     
-    public void reviewButtonActionPerformed(){}
+    
+    private void assignmentViewButtonActionPerformed(Assignment a){
+        switchPanel("selectedAssn");
+        assnNameLabel.setText(a.getName());
+        assnDescField.setText(a.getDescription());
+        showArtifacts(a);
+    }
+    
+    private void reviewButtonActionPerformed(Student targetSt){
+        switchPanel("peerreviews");
+        prLabel1.setText("Your Peer Review of " + targetSt.getName() + "'s Performance");
+        UReview review = null;
+        for(UReview iter: targetSt.getReviews()){
+            if(iter.getReviewer().getName().equalsIgnoreCase(UIController.getCurrentUser().getName())){
+                review = iter;
+                break;
+            }
+        }
+        
+        if(review != null){
+            commentArea.setText(review.getComment());
+            prTF1.setText("" + review.getPoint());
+        }
+        
+        else{
+            commentArea.setText("");
+            prTF1.setText("");
+        }
+        
+        targetStudent = targetSt;
+    }
+    
+    private void artifactRemoveButtonActionPerformed(){
+        
+    }
+    
+    private void artifactReviewButtonActionPerformed(){
+        
+    }
+    
+    private void switchPanel(String type){
+        for(JPanel pn: switchingPanels){
+            pn.setVisible(false);
+        }
+        
+        if(type.equalsIgnoreCase("mygroup")){
+            myGroupPanel.setVisible(true);
+        }
+        
+        else if(type.equalsIgnoreCase("assignments")){
+            assignmentsPanel.setVisible(true);
+        }
+        
+        else if(type.equalsIgnoreCase("peerReviews")){
+            peerReviewPanel.setVisible(true);
+        }
+        
+        else if(type.equalsIgnoreCase("selectedAssn")){
+            selectedAssignmentPanel.setVisible(true);
+        }
+    }
     
     private void showTime() {
         Timer timer = new Timer(1000, new ActionListener() {
@@ -255,6 +532,11 @@ public class StudentScreen extends javax.swing.JFrame implements Refreshable{
         Group selectedGroup = UIController.getGlobalGroupList().get(0);
         
         for(User u: selectedGroup.getMembers()){
+            
+            if(u == UIController.getCurrentUser()){
+                continue;
+            }
+            
             UIPanel memberPanel = PanelFactory.createPanel("stMember");
             
             memberPanel.setLabel(u.getName());
@@ -266,7 +548,7 @@ public class StudentScreen extends javax.swing.JFrame implements Refreshable{
             if(u.getClass().getSimpleName().equalsIgnoreCase("Student")){
                 bt.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                            reviewButtonActionPerformed();
+                            reviewButtonActionPerformed((Student) u);
                         }
                     });
             }
@@ -281,24 +563,125 @@ public class StudentScreen extends javax.swing.JFrame implements Refreshable{
         
         myGroupInternalPanel.add(Box.createRigidArea(new Dimension(15, 15)));
     }
+    
+    /*
+    ** Adds a single assignment to the "Assigments" panel display
+    ** Gets called as many times as there are existing assignments
+    ** Also gets called when a new assignment is created
+    ** The assignment panel is created by PanelFactory
+    */
+    private void addAssignmentToUI(Assignment a){
+        
+        UIPanel newAssignmentPanel = PanelFactory.createPanel("assignment");
+        
+        newAssignmentPanel.setLabel(a.getName());
+            
+        newAssignmentPanel.getViewButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignmentViewButtonActionPerformed(a);
+            }
+        });
+            
+        assignmentsInternalPanel.add(newAssignmentPanel);
+        assignmentsInternalPanel.add(javax.swing.Box.createVerticalGlue());
+    }
+    
+    private void addArtifactToUI(String artName, ArrayList<ArtifactReview> reviews){
+        UIPanel artPanel = PanelFactory.createPanel("artPanel");
+        artPanel.setLabel(artName);
+        if(reviews == null || reviews.size() == 0 ){
+            artPanel.setLabel2("Pending for Review");
+        }
+        
+        else{
+            artPanel.setLabel2("Submitted");
+        }
+        
+        artPanel.getRemoveButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                artifactRemoveButtonActionPerformed();
+            }
+        });
+        
+        artPanel.getReviewButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                artifactReviewButtonActionPerformed();
+            }
+        });
+        
+        saInternalPanel.add(artPanel);
+        saInternalPanel.add(javax.swing.Box.createVerticalGlue());
+    }
+    
+    /*
+    ** Adds inital data stored in permanent data to the UI 
+    */
+    private void showInitialAssignments(){
+        Group groupData= UIController.getGlobalGroupList().get(0);
+        ArrayList<Assignment> assignmentData = groupData.getAssignments();
+        for(Assignment a : assignmentData){
+            addAssignmentToUI(a);
+        }
+        assignmentsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+    }
+    
+    private void showArtifacts(Assignment a){
+        saInternalPanel.removeAll();
+        ArrayList<String> artifacts = a.getArtifacts();
+        for(String art: artifacts){
+            addArtifactToUI(art,a.getAReviews().get(art));
+        }
+        saSP.getVerticalScrollBar().setUnitIncrement(16);
+    }
+    
+    public void setIcons(){
+        uploadArtifactButton.setIcon(new javax.swing.ImageIcon("src\\main\\java\\group1j\\ReviewTool\\UserInterface\\img\\upload.png"));
+        descSP.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel artLabel1;
+    private javax.swing.JLabel artLabel2;
+    private javax.swing.JPanel artP;
     private javax.swing.JToggleButton assignmentsButton;
-    private java.awt.Label avatarIcon;
+    private javax.swing.JPanel assignmentsInternalPanel;
+    private javax.swing.JPanel assignmentsPanel;
+    private javax.swing.JScrollPane assignmentsScrollPane;
+    private javax.swing.JTextPane assnDescField;
+    private javax.swing.JLabel assnLabel2;
+    private javax.swing.JLabel assnLabel3;
+    private javax.swing.JLabel assnNameLabel;
+    private java.awt.Label avatarIcon1;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextPane commentArea;
+    private javax.swing.JScrollPane descSP;
+    private javax.swing.JLabel dueDateLabel;
     private javax.swing.JPanel emp;
     private javax.swing.JPanel leftPanel;
-    private javax.swing.JLabel memberName;
+    private javax.swing.JLabel memberName1;
     private javax.swing.JPanel middlePanel;
     private javax.swing.JToggleButton myGroupButton;
     private javax.swing.JPanel myGroupInternalPanel;
     private javax.swing.JPanel myGroupPanel;
     private javax.swing.JScrollPane myGroupSP;
-    private javax.swing.JToggleButton prsButton;
-    private javax.swing.JLabel rankLabel;
+    private javax.swing.JPanel peerReviewPanel;
+    private javax.swing.JLabel prLabel1;
+    private javax.swing.JLabel prLabel2;
+    private javax.swing.JLabel prLabel3;
+    private javax.swing.JScrollPane prSp2;
+    private javax.swing.JTextField prTF1;
+    private javax.swing.JTextField prTF2;
+    private javax.swing.JLabel rankLabel1;
+    private javax.swing.JButton removeButton;
     private javax.swing.JButton reviewButton;
+    private javax.swing.JButton reviewButton1;
+    private javax.swing.JPanel saInternalPanel;
+    private javax.swing.JScrollPane saSP;
+    private javax.swing.JPanel selectedAssignmentPanel;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JPanel topPanel;
+    private javax.swing.JButton updateReviewButton;
+    private javax.swing.JButton uploadArtifactButton;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

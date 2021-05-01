@@ -23,7 +23,7 @@ public class MemberPanel extends UIPanel{
         removeButton = new javax.swing.JButton();
         reviewButton = new javax.swing.JButton();
 
-        label.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label.setForeground(new java.awt.Color(0, 0, 0));
         
         this.setBackground(new java.awt.Color(255, 255, 255));
@@ -47,7 +47,7 @@ public class MemberPanel extends UIPanel{
         newMemberPanelLayout.setHorizontalGroup(newMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newMemberPanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 500, Short.MAX_VALUE)
                 .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

@@ -18,7 +18,7 @@ public class GroupPanel extends UIPanel{
         label = new javax.swing.JLabel();
         viewButton = new javax.swing.JButton();
             
-        label.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        label.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         label.setForeground(new java.awt.Color(0, 0, 0));
         
         viewButton.setBackground(new java.awt.Color(255, 255, 255));
